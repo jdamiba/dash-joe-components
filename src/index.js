@@ -8,6 +8,8 @@ import Markdown from './components/Markdown.react';
 import DatePickerSingle from './components/DatePickerSingle.react';
 import DatePickerRange from './components/DatePickerRange.react';
 import Upload from './components/Upload.react';
+import Navigation from './components/Navigation.react';
+
 
 
 import 'react-dates/lib/css/_datepicker.css';
@@ -21,6 +23,7 @@ export {
     Slider,
     Game,
     Markdown,
+    Navigation,
     DatePickerSingle,
     DatePickerRange,
     Upload,

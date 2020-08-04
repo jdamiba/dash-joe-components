@@ -43,6 +43,7 @@ async_resources = [
     'markdown',
     'slider',
     'game',
+    'navigation',
     'upload'
 ]
 

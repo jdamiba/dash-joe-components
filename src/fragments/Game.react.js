@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from 'react-bulma-components';
 import {propTypes, defaultProps} from '../components/Game.react';
 import Board from '../components/Board';
-import Navigation from '../components/Navbar.react';
+import Navigation from '../components/Navigation.react';
 
 import Clock from '../components/Clock'; // Import a component from another file
 import { render } from 'enzyme';

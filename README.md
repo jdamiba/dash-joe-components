@@ -1,91 +1,49 @@
-# Dash Core Components
+How to async components
 
-This package provides the core React component suite for [Dash][].
+1 add it to aysnc_resources in __init__.py - be careful not to edit generated code
+2 create async component in /src/fragments - this is where you import npm libraries
+3 create LazyLoader js function => export default () => import(/* webpackChunkName: “chunkName” */ '../../fragments/ComponentName.react’);
+4 create component in src/components that imports the lazy loader, wraps it in suspense - this is where prototypes are defined (async component in fragments imports these definitions)
+5 update src/index.js to export your new component
+6 update web pack config
 
-[![CircleCI](https://circleci.com/gh/plotly/dash-core-components.svg?style=svg)](https://circleci.com/gh/plotly/dash-core-components)
-
-## Development
-
-The `dash` package contains some tools to build components and drive the bundles build process.
-To avoid the circular dependency situation, we don't add `dash` as a required install in the `dash-core-components` setup.
-But, in order to do development locally, you need to install `dash` before everything.
-
-1. Install the dependencies with:
-
-```bash
-# it's recommended to install your python packages in a virtualenv
-# python 2
-$ pip install virtualenv --user && virtualenv venv && . venv/bin/activate
-# python 3
-$ python -m venv venv && . venv/bin/activate
-
-# make sure dash is installed with dev and testing dependencies
-$ pip install dash[dev,testing]  # in some shells you need \ to escape []
-
-# run the build process
-$ npm i --ignore-scripts && npm run build
-
-# install dcc in editable mode
-$ pip install -e .
+```json
+optimization: {
+        minimizer: [
+        new TerserPlugin({
+                sourceMap: true,
+                parallel: true,
+                cache: './.build_cache/terser',
+                terserOptions: {
+                warnings: false,
+                ie8: false
+                }
+        })
+        ],
+        splitChunks: {
+        name: true,
+        cacheGroups: {
+                async: {
+                chunks: 'async',
+                minSize: 0,
+                name(module, chunks, cacheGroupKey) {
+                        return `${cacheGroupKey}-${chunks[0].name}`;
+                }
+                },
+                shared: {
+                chunks: 'all',
+                minSize: 0,
+                minChunks: 2,
+                name: 'dash_joe_components-shared'
+                }
+        }
+        }
+},
+plugins: [
+        new WebpackDashDynamicImport(),
+        new webpack.SourceMapDevToolPlugin({
+        filename: '[file].map',
+        exclude: ['async-plotlyjs']
+        })
+]
 ```
-
-### Demo server
-
-You can start up a demo development server to see a demo of the rendered
-components:
-
-```sh
-$ npm start
-```
-
-You have to maintain the list of components in `demo/Demo.react.js`.
-
-### Code quality and tests
-
-### To run integration tests (test_integration.py)
-You can run the Selenium integration tests with the
-```sh
-npm test
-```
-command, and the Jest unit tests with the
-```sh
-npm run test-unit
-```
-
-### Testing your components in Dash
-1. Run the build watcher by running
-        $ npm run build:watch
-
-2. Run the dash layout you want to test
-
-        # Import dash_core_components to your layout, then run it:
-        $ python my_dash_layout.py
-
-## Uninstalling python package locally
-
-```sh
-$ npm run uninstall-local
-```
-
-## Publishing
-
-There's an npm script that will handle publish, provided you have the right credentials. You can run it by running
-
-```sh
-$ npm run publish-all
-```
-
-See the [Publishing New Components/Features](CONTRIBUTING.md#publishing-new-componentsfeatures) section of the Contributing guide for step-by-step instructions on publishing new components.
-
-## Dash Component Boilerplate
-
-See the [dash-component-boilerplate](https://github.com/plotly/dash-component-boilerplate) repo for more information.
-
-[Dash]: https://plotly.com/dash
-[Dash Component Boilerplate]: (https://github.com/plotly/dash-component-boilerplate)
-[NPM package authors]: https://www.npmjs.com/package/dash-core-components/access
-[PyPi]: https://pypi.python.org/pypi
-
-
-## Big Thanks
-Cross-browser Testing Powered by [![image](https://user-images.githubusercontent.com/1394467/64290307-e4c66600-cf33-11e9-85a1-12c82230a597.png)](https://saucelabs.com) 
