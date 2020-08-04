@@ -97,7 +97,7 @@ export default class Game extends React.Component {
       }
 
       return (
-        <>
+        <div>
           <div className="top-info">
             <Clock />
             <h1 className="title">Tic-Tac-Toe</h1>
@@ -114,11 +114,10 @@ export default class Game extends React.Component {
               <ol>{moves}</ol>
             </div>
           </div>
-        </>
+        </div>
       );
     }
   }
 
   Game.propTypes = propTypes;
   Game.defaultProps = defaultProps;
-

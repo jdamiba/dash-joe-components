@@ -1,8 +1,5 @@
 import React, {Component, lazy, Suspense} from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'react-bulma-components';
-import Board from './Board';
-import Clock from './Clock'; // Import a component from another file
 import Game from '../utils/LazyLoader/Game';
 
 const RealGame = lazy(Game);

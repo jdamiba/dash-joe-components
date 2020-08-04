@@ -1,5 +1,6 @@
 import React from 'react';
 import Square from './Square';
+import PropTypes from "prop-types";
 
 // render 9 squares
 class Board extends React.Component {
@@ -11,7 +12,7 @@ class Board extends React.Component {
 
     render() {
       return (
-        <>
+        <div>
           <div className="board-row">
             {this.renderSquare(0)}
             {this.renderSquare(1)}
@@ -27,7 +28,7 @@ class Board extends React.Component {
             {this.renderSquare(7)}
             {this.renderSquare(8)}
           </div>
-        </>
+        </div>
       );
     }
   }
