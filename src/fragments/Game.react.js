@@ -2,7 +2,12 @@ import React from 'react';
 import { Button } from 'react-bulma-components';
 import {propTypes, defaultProps} from '../components/Game.react';
 import Board from '../components/Board';
+import Navigation from '../components/Navbar.react';
+
 import Clock from '../components/Clock'; // Import a component from another file
+import { render } from 'enzyme';
+
+
 
 function calculateWinner(squares){
   const lines = [
@@ -98,6 +103,7 @@ export default class Game extends React.Component {
 
       return (
         <div>
+          <Navigation/>
           <div className="top-info">
             <Clock />
             <h1 className="title">Tic-Tac-Toe</h1>
