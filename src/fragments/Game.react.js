@@ -5,7 +5,6 @@ import Board from '../components/Board';
 import Navigation from '../components/Navigation.react';
 
 import Clock from '../components/Clock'; // Import a component from another file
-import { render } from 'enzyme';
 
 
 
@@ -53,7 +52,7 @@ export default class Game extends React.Component {
         return;
       }
 
-      squares[i] = this.state.xIsNext ? '🐈' : '🐕';
+      squares[i] = this.state.xIsNext ? '🦚' : '🦄';
 
       this.setState({
         history: history.concat([{
@@ -94,7 +93,7 @@ export default class Game extends React.Component {
       if (winner){
         status = "Winner: " + winner;
       } else {
-        status = "Next Player is " + (this.state.xIsNext ? '🐈' : '🐕')
+        status = "Next Player is " + (this.state.xIsNext ? '🦚' : '🦄')
       }
 
       if (this.state.stepNumber === 9){

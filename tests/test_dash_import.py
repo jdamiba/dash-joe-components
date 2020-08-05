@@ -4,7 +4,7 @@ import unittest
 
 class TestDashImport(unittest.TestCase):
     def setUp(self):
-        with open("dash.py", "w") as _:
+        with open("dash.py", "w"):
             pass
 
     def tearDown(self):

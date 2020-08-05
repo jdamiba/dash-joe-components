@@ -21,6 +21,8 @@ Square.propTypes = {
 
     value: PropTypes.string,
 
+    onClick: PropTypes.func,
+
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.

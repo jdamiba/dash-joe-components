@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from "prop-types";
 
+const intervalTime = 1000;
+
 class Clock extends React.Component{
     constructor(props){
         super(props);
@@ -9,7 +11,7 @@ class Clock extends React.Component{
 
     componentDidMount(){
         this.timerID = setInterval(
-            () => this.tick(), 1000
+            () => this.tick(), intervalTime
         );
     }
 
