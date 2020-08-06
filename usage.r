@@ -8,7 +8,9 @@ app <- Dash$new()
 app$layout(
   htmlDiv(
     list(
-      dccGame()
+      dccNavigation(),
+      dccGame(),
+      dccGame(playerOne="🕷️", playerTwo="🐦"),
     )
   )
 )

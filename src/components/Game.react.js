@@ -25,12 +25,12 @@ export default class GameComponent extends Component {
     /**
      * The emoji used to identify the first player.
      */
-    playerOne: PropTypes.string.isRequired,
+    playerOne: PropTypes.string,
 
     /**
      * The emoji used to identify the second player
      */
-    playerTwo: PropTypes.string.isRequired,
+    playerTwo: PropTypes.string,
 
     /**
      * Dash-assigned callback that should be called to report property changes
