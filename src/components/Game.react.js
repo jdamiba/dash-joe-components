@@ -8,19 +8,29 @@ export default class GameComponent extends Component {
     render() {
       return (
         <Suspense fallback={null}>
-            <RealGame />
+            <RealGame playerOne={this.props.playerOne} playerTwo={this.props.playerTwo} />
         </Suspense>
       );
     }
   }
 
-  GameComponent.defaultProps = {};
+  GameComponent.defaultProps = {playerOne: "🦚", playerTwo: "🦄" };
 
   GameComponent.propTypes = {
     /**
      * The ID used to identify this component in Dash callbacks.
      */
     id: PropTypes.string,
+
+    /**
+     * The emoji used to identify the first player.
+     */
+    playerOne: PropTypes.string.isRequired,
+
+    /**
+     * The emoji used to identify the second player
+     */
+    playerTwo: PropTypes.string.isRequired,
 
     /**
      * Dash-assigned callback that should be called to report property changes

@@ -2,10 +2,7 @@ import React from 'react';
 import { Button } from 'react-bulma-components';
 import {propTypes, defaultProps} from '../components/Game.react';
 import Board from '../components/Board';
-import Navigation from '../components/Navigation.react';
-
 import Clock from '../components/Clock'; // Import a component from another file
-
 
 
 function calculateWinner(squares){
@@ -32,8 +29,8 @@ function calculateWinner(squares){
 }
 
 export default class Game extends React.Component {
-    constructor(){
-      super();
+    constructor(props){
+      super(props);
       this.state = {
         history: [{
           squares: Array(9).fill(null)
@@ -52,7 +49,7 @@ export default class Game extends React.Component {
         return;
       }
 
-      squares[i] = this.state.xIsNext ? '🦚' : '🦄';
+      squares[i] = this.state.xIsNext ? this.props.playerOne : this.props.playerTwo;
 
       this.setState({
         history: history.concat([{
@@ -93,7 +90,7 @@ export default class Game extends React.Component {
       if (winner){
         status = "Winner: " + winner;
       } else {
-        status = "Next Player is " + (this.state.xIsNext ? '🦚' : '🦄')
+        status = "Next Player is " + (this.state.xIsNext ? this.props.playerOne : this.props.playerTwo)
       }
 
       if (this.state.stepNumber === 9){
@@ -102,7 +99,6 @@ export default class Game extends React.Component {
 
       return (
         <div>
-          <Navigation/>
           <div className="top-info">
             <Clock />
             <h1 className="title">Tic-Tac-Toe</h1>
